@@ -1,12 +1,12 @@
-<form class="pure-form">
+<form class="pure-form" action='/new' method='post'>
   <fieldset>
     <legend>新しいメモを追加</legend>
 
-    <input type="text" placeholder="タイトル">
-    <input type="text" placeholder="内容">
+    <input type="text" name='title' placeholder="タイトル">
+    <input type="text" name='body' placeholder="内容">
 
     <label for="categories">カテゴリ</label>
-    <select id="categories">
+    <select id="categories" name="category">
       <option></option>
     </select>
 
@@ -14,26 +14,33 @@
   </fieldset>
 </form>
 
-<div class="ui cards">
+<div class="ui cards" >
+  <% @contents.each do |content| %>
   <div class="ui card">
     <div class="content">
       <div class="header">
-        <メモ1のタイトル>
+        <%= content.title %>
       </div>
       <div class="meta">
-        <メモ1のカテゴリ>
+        <%= content.body %>
       </div>
     </div>
     <div class="content">
       <div class="description">
-        <メモ1の内容>
+        <%= content.body %>
       </div>
     </div>
     <div class="extra content">
-      <button class="ui button"><a href="#">Edit</a></button>
-      <button class="ui button"><a href="#">Delete</a></button>
+      <button class="ui button">
+        <a href="/edit/<%= content.id %>">Edit</a></button>
+      <button class="ui button">
+        <a href="/delete/<%= content.id %>">Delete</a></button>
     </div>
   </div>
+  <% end %>
+</div>
+
+<div class="ui cards">
   <div class="ui card">
     <div class="content">
       <div class="header">
