@@ -8,7 +8,7 @@
         <label for="categories">カテゴリ</label>
         <select id="categories" name="category">
         <% @categories.each do |category| %>
-          <option value="<%= category.id %>"><%= category.name %></option>
+          <option value="<%= category.id %>" <%= "selected" if @content.category_id == category.id %>><%= category.name %></option>
         <% end %>
         </select>
         <button type="submit" class="pure-button pure-button-primary">更新</button>
