@@ -4,8 +4,19 @@ require 'sinatra/reloader' if development?
 require 'sinatra/activerecord'
 require './models'
 
+before do
+    @my_name = 'しげる'
+    @categories = Category.all
+ end
+
 get '/' do
     @contents = Contribution.all
+    @categories = Category.all
+    erb :index
+end
+
+get '/category/:category_id' do
+    @contents = Contribution.where(:category_id => params[:category_id])
     @categories = Category.all
     erb :index
 end
