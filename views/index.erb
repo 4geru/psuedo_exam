@@ -7,7 +7,9 @@
 
     <label for="categories">カテゴリ</label>
     <select id="categories" name="category">
-      <option></option>
+    <% @categories.each do |category| %>
+      <option value="<%= category.id %>"><%= category.name %></option>
+    <% end %>
     </select>
 
     <button type="submit" class="pure-button pure-button-primary">追加</button>
@@ -22,7 +24,7 @@
         <%= content.title %>
       </div>
       <div class="meta">
-        <%= content.body %>
+        <%= content.category.name %>
       </div>
     </div>
     <div class="content">
@@ -38,45 +40,4 @@
     </div>
   </div>
   <% end %>
-</div>
-
-<div class="ui cards">
-  <div class="ui card">
-    <div class="content">
-      <div class="header">
-        <メモ2のタイトル>
-      </div>
-      <div class="meta">
-        <メモ2のカテゴリ>
-      </div>
-    </div>
-    <div class="content">
-      <div class="description">
-        <メモ2の内容>
-      </div>
-    </div>
-    <div class="extra content">
-      <button class="ui button"><a href="#">Edit</a></button>
-      <button class="ui button"><a href="#">Delete</a></button>
-    </div>
-  </div>
-  <div class="ui card">
-    <div class="content">
-      <div class="header">
-        <メモ3のタイトル>
-      </div>
-      <div class="meta">
-        <メモ3のカテゴリ>
-      </div>
-    </div>
-    <div class="content">
-      <div class="description">
-        <メモ3の内容>
-      </div>
-    </div>
-    <div class="extra content">
-      <button class="ui button"><a href="#">Edit</a></button>
-      <button class="ui button"><a href="#">Delete</a></button>
-    </div>
-  </div>
 </div>

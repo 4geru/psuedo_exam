@@ -7,7 +7,9 @@
 
         <label for="categories">カテゴリ</label>
         <select id="categories" name="category">
-            <option></option>
+        <% @categories.each do |category| %>
+          <option value="<%= category.id %>"><%= category.name %></option>
+        <% end %>
         </select>
         <button type="submit" class="pure-button pure-button-primary">更新</button>
     </fieldset>

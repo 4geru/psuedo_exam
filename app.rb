@@ -6,6 +6,7 @@ require './models'
 
 get '/' do
     @contents = Contribution.all
+    @categories = Category.all
     erb :index
 end
 
@@ -15,15 +16,18 @@ get '/delete/:id' do
 end
 
 get '/edit/:id' do
-   @content = Contribution.find(params[:id])
-   erb :edit
+    @content = Contribution.find(params[:id])
+    @categories = Category.all
+    erb :edit
 end
 
 post '/renew/:id' do
     @content = Contribution.find(params[:id]) 
     @content.update({
        title: params[:title],
-       body: params[:body]
+       body: params[:body],
+       category_id: params[:category]
+
     })
     redirect '/'
 end
@@ -31,7 +35,8 @@ end
 post '/new' do
    Contribution.create({
        title: params[:title],
-       body: params[:body]
+       body: params[:body],
+       category_id: params[:category]
    }) 
    redirect '/'
 end
