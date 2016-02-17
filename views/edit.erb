@@ -1,13 +1,15 @@
-<form class="pure-form">
+<form class="pure-form" action='/renew/<%= @content.id %>' method='post'>
     <fieldset>
         <legend>メモの編集</legend>
 
-        <input type="text" placeholder="タイトル">
-        <input type="text" placeholder="内容">
+        <input type="text" placeholder="タイトル" name="title" value="<%= @content.title%>">
+        <input type="text" placeholder="内容" name="body" value="<%= @content.body%>">
 
         <label for="categories">カテゴリ</label>
         <select id="categories" name="category">
-            <option></option>
+        <% @categories.each do |category| %>
+          <option value="<%= category.id %>" <%= "selected" if @content.category_id == category.id %>><%= category.name %></option>
+        <% end %>
         </select>
         <button type="submit" class="pure-button pure-button-primary">更新</button>
     </fieldset>

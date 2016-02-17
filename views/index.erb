@@ -1,75 +1,43 @@
-<form class="pure-form">
+<form class="pure-form" action='/new' method='post'>
   <fieldset>
     <legend>新しいメモを追加</legend>
 
-    <input type="text" placeholder="タイトル">
-    <input type="text" placeholder="内容">
+    <input type="text" name='title' placeholder="タイトル">
+    <input type="text" name='body' placeholder="内容">
 
     <label for="categories">カテゴリ</label>
-    <select id="categories">
-      <option></option>
+    <select id="categories" name="category">
+    <% @categories.each do |category| %>
+      <option value="<%= category.id %>"><%= category.name %></option>
+    <% end %>
     </select>
 
     <button type="submit" class="pure-button pure-button-primary">追加</button>
   </fieldset>
 </form>
 
-<div class="ui cards">
+<div class="ui cards" >
+  <% @contents.each do |content| %>
   <div class="ui card">
     <div class="content">
       <div class="header">
-        <メモ1のタイトル>
+        <%= content.title %>
       </div>
       <div class="meta">
-        <メモ1のカテゴリ>
+        <%= content.category.name %>
       </div>
     </div>
     <div class="content">
       <div class="description">
-        <メモ1の内容>
+        <%= content.body %>
       </div>
     </div>
     <div class="extra content">
-      <button class="ui button"><a href="#">Edit</a></button>
-      <button class="ui button"><a href="#">Delete</a></button>
+      <button class="ui button">
+        <a href="/edit/<%= content.id %>">Edit</a></button>
+      <button class="ui button">
+        <a href="/delete/<%= content.id %>">Delete</a></button>
     </div>
   </div>
-  <div class="ui card">
-    <div class="content">
-      <div class="header">
-        <メモ2のタイトル>
-      </div>
-      <div class="meta">
-        <メモ2のカテゴリ>
-      </div>
-    </div>
-    <div class="content">
-      <div class="description">
-        <メモ2の内容>
-      </div>
-    </div>
-    <div class="extra content">
-      <button class="ui button"><a href="#">Edit</a></button>
-      <button class="ui button"><a href="#">Delete</a></button>
-    </div>
-  </div>
-  <div class="ui card">
-    <div class="content">
-      <div class="header">
-        <メモ3のタイトル>
-      </div>
-      <div class="meta">
-        <メモ3のカテゴリ>
-      </div>
-    </div>
-    <div class="content">
-      <div class="description">
-        <メモ3の内容>
-      </div>
-    </div>
-    <div class="extra content">
-      <button class="ui button"><a href="#">Edit</a></button>
-      <button class="ui button"><a href="#">Delete</a></button>
-    </div>
-  </div>
+  <% end %>
 </div>

@@ -168,16 +168,13 @@
         <div class="pure-menu pure-menu-horizontal pure-menu-scrollable custom-menu custom-menu-bottom custom-menu-tucked" id="tuckedMenu">
             <div class="custom-menu-screen"></div>
             <ul class="pure-menu-list">
-                <li class="pure-menu-item">
-                    <a href="#" class="pure-menu-link">
-                        <カテゴリ名>
-                    </a>
-                </li>
-                <li class="pure-menu-item">
-                    <a href="#" class="pure-menu-link">
-                        <カテゴリ名>
-                    </a>
-                </li>
+                <% @categories.each do |category| %>
+                    <li class="pure-menu-item">
+                        <a href="/category/<%= category.id %>" class="pure-menu-link">
+                            <%= category.name %>
+                        </a>
+                    </li>
+                <% end %>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">...</a></li>
             </ul>
         </div>
